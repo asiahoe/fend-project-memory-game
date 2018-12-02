@@ -52,6 +52,7 @@ deck.addEventListener('click', function(e) {
       // Verify whether the cards match.
       isMatch(cardSelected);
       moveCount();
+      setScore();
     }
   }
 
@@ -105,6 +106,33 @@ function moveCount() {
   // Insert the new value on the page.
   const movesText = document.querySelector('.moves');
   movesText.innerHTML = moves;
+}
+
+//  Calculate the score star rating.
+function setScore() {
+  // Remove a star when moves reach 16.
+  if (moves === 16) {
+    removeStar();
+  // Remove an additional star when moves reach 20.
+  } else if (moves === 20) {
+    removeStar();
+  }
+}
+
+// Remove a star according to te set score.
+function removeStar() {
+  // Select the stars list.
+  const stars = document.querySelectorAll('.stars li');
+  // Loop through the stars list.
+  for (star of stars) {
+    // If the star's visibility has not already been set to hidden,
+    if (star.style.visibility !== 'hidden') {
+      // Set the star's visibility to hidden.
+      star.style.visibility = 'hidden';
+      // Do not proceed to the next star.
+      break;
+    }
+  }
 }
 
 /*
