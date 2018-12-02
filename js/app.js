@@ -7,6 +7,24 @@
 // Using querySelector instead of querySelectorAll to reduce number of events.
 const deck = document.querySelector('.deck');
 
+function shuffleDeck() {
+
+  // Store all cards in a variable.
+  // Change the node list into an array.
+  const cards = Array.from(document.querySelectorAll('.deck li'));
+
+  // Shuffle the cards and store them in a variable.
+  const shuffledCards = shuffle(cards);
+
+  // Append the newly shuffled cards to the deck.
+  for (card of shuffledCards) {
+    deck.appendChild(card);
+  }
+}
+
+//  Shuffle the deck right away.
+shuffleDeck();
+
 // Initialize empty array to store visible cards.
 let openCards = [];
 
@@ -85,17 +103,17 @@ function isMatch() {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+  let currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 
-    return array;
+  return array;
 }
 
 
