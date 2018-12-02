@@ -16,14 +16,21 @@ deck.addEventListener('click', function(e) {
   // Store the clicked card.
   const cardSelected = e.target;
 
-  // If the element clicked is a card with no additional classes:
-  if (cardSelected.classList == 'card') {
+  // If the element clicked is a card with no additional classes,
+  // And if no more than 2 cards are open:
+  if (cardSelected.classList == 'card' && openCards.length < 2) {
 
     // Flip the card.
     // Add the card to the openCards array.
     flipCard(cardSelected);
     addCard(cardSelected);
-    console.log(openCards);
+
+    // If there are 2 visible cards:
+    if (openCards.length === 2) {
+
+      // Verify whether the cards match.
+      isMatch(cardSelected);
+    }
   }
 
 });
@@ -37,6 +44,31 @@ function flipCard(cardSelected) {
 // Add the card to the list of visible cards.
 function addCard(cardSelected) {
   openCards.push(cardSelected);
+}
+
+// Check if the visible cards match.
+function isMatch() {
+
+  // Store visible cards contents as variables.
+  let cardOne = openCards[0].firstElementChild.className;
+  let cardTwo = openCards[1].firstElementChild.className;
+
+  //  Loop through the visible cards:
+  for (card of openCards) {
+
+    // If both visible cards are identical:
+    if (cardOne == cardTwo) {
+
+      //  Toggle the match class to keep cards open.
+      card.classList.toggle('match');
+
+    // If there are no matches, flip them back.
+    } else {
+      flipCard(card);
+    }
+
+  //  Always reset cards after comparing a pair.
+  } openCards = [];
 }
 
 /*
