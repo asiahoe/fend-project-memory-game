@@ -2,6 +2,18 @@
  * Create a list that holds all of your cards
  */
 
+// Store the entire deck of cards.
+// The contents of the deck don't change, so I can use const here.
+// Using querySelector instead of querySelectorAll to reduce number of events.
+const deck = document.querySelector('.deck');
+
+// Delegate the click event to the parent (ul.deck) instead of children (li.card).
+deck.addEventListener('click', function(e) {
+
+  // Store the clicked card.
+  const cardSelected = e.target;
+
+});
 
 /*
  * Display the cards on the page
