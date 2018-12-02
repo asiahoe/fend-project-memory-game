@@ -7,6 +7,9 @@
 // Using querySelector instead of querySelectorAll to reduce number of events.
 const deck = document.querySelector('.deck');
 
+// Initialize empty array to store visible cards.
+let openCards = [];
+
 // Delegate the click event to the parent (ul.deck) instead of children (li.card).
 deck.addEventListener('click', function(e) {
 
@@ -17,7 +20,10 @@ deck.addEventListener('click', function(e) {
   if (cardSelected.classList == 'card') {
 
     // Flip the card.
+    // Add the card to the openCards array.
     flipCard(cardSelected);
+    addCard(cardSelected);
+    console.log(openCards);
   }
 
 });
@@ -26,6 +32,11 @@ deck.addEventListener('click', function(e) {
 function flipCard(cardSelected) {
   cardSelected.classList.toggle('open');
   cardSelected.classList.toggle('show');
+}
+
+// Add the card to the list of visible cards.
+function addCard(cardSelected) {
+  openCards.push(cardSelected);
 }
 
 /*
