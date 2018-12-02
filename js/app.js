@@ -13,7 +13,20 @@ deck.addEventListener('click', function(e) {
   // Store the clicked card.
   const cardSelected = e.target;
 
+  // If the element clicked is a card with no additional classes:
+  if (cardSelected.classList == 'card') {
+
+    // Flip the card.
+    flipCard(cardSelected);
+  }
+
 });
+
+// Display the card's symbol by toggling classes.
+function flipCard(cardSelected) {
+  cardSelected.classList.toggle('open');
+  cardSelected.classList.toggle('show');
+}
 
 /*
  * Display the cards on the page
