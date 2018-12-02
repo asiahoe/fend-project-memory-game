@@ -7,6 +7,9 @@
 // Using querySelector instead of querySelectorAll to reduce number of events.
 const deck = document.querySelector('.deck');
 
+// Initialize move counter.
+let moves = 0;
+
 function shuffleDeck() {
 
   // Store all cards in a variable.
@@ -48,6 +51,7 @@ deck.addEventListener('click', function(e) {
 
       // Verify whether the cards match.
       isMatch(cardSelected);
+      moveCount();
     }
   }
 
@@ -92,6 +96,15 @@ function isMatch() {
 
   // Delay card flipping for 1000 ms.
   }, 1000);
+}
+
+// Move Counter
+function moveCount() {
+  // Increment moves.
+  moves++;
+  // Insert the new value on the page.
+  const movesText = document.querySelector('.moves');
+  movesText.innerHTML = moves;
 }
 
 /*
