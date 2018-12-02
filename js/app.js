@@ -53,22 +53,27 @@ function isMatch() {
   let cardOne = openCards[0].firstElementChild.className;
   let cardTwo = openCards[1].firstElementChild.className;
 
-  //  Loop through the visible cards:
-  for (card of openCards) {
+  setTimeout(function() {
 
-    // If both visible cards are identical:
-    if (cardOne == cardTwo) {
+    //  Loop through the visible cards:
+    for (card of openCards) {
 
-      //  Toggle the match class to keep cards open.
-      card.classList.toggle('match');
+      // If both visible cards are identical:
+      if (cardOne == cardTwo) {
 
-    // If there are no matches, flip them back.
-    } else {
-      flipCard(card);
-    }
+        //  Toggle the match class to keep cards open.
+        card.classList.toggle('match');
 
-  //  Always reset cards after comparing a pair.
-  } openCards = [];
+      // If there are no matches, flip them back.
+      } else {
+        flipCard(card);
+      }
+
+    //  Always reset cards after comparing a pair.
+    } openCards = [];
+
+  // Delay card flipping for 1000 ms.
+  }, 1000);
 }
 
 /*
