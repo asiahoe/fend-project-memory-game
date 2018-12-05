@@ -10,6 +10,11 @@ const deck = document.querySelector('.deck');
 // Initialize move counter.
 let moves = 0;
 
+// Initialize game timer.
+let time = 0;
+let timerID;
+let timerOff = true;
+
 function shuffleDeck() {
 
   // Store all cards in a variable.
@@ -43,8 +48,14 @@ deck.addEventListener('click', function(e) {
 
     // Flip the card.
     // Add the card to the openCards array.
+    // Start the game timer.
     flipCard(cardSelected);
     addCard(cardSelected);
+
+    if (timerOff) {
+      startTimer();
+      timerOff = false;
+    }
 
     // If there are 2 visible cards:
     if (openCards.length === 2) {
@@ -132,6 +143,40 @@ function removeStar() {
       // Do not proceed to the next star.
       break;
     }
+  }
+}
+
+//  Start the timer.
+function startTimer() {
+  timerID = setInterval(function () {
+    // Iterate the time for each interval.
+    time++;
+    // Display the timer.
+    displayTimer();
+  // 1000ms = 1s
+  }, 1000);
+}
+
+//  Stop the timer.
+function stopTimer() {
+  clearInterval(timerID);
+}
+
+// Display the timer.
+function displayTimer() {
+  //  Locate the timer in the DOM.
+  const timer = document.querySelector('.timer');
+  // Calculate the number of minutes. Math floor converts decimals to whole numbers.
+  const minutes = Math.floor(time / 60);
+  // Modulo operator gives us the remainder of minutes, which are seconds.
+  const seconds = time % 60;
+  // If the seconds are in single digits,
+  if (seconds < 10) {
+    // Precede the seconds with a zero.
+    timer.innerHTML = minutes + `:0` + seconds;
+  // Otherwise, display the seconds as is.
+  } else {
+    timer.innerHTML = minutes + `:` + seconds;
   }
 }
 
